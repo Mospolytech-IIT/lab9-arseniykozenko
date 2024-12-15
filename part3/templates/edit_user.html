@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit User</h1>
+<form method="post" action="/users/update/{{ user.id }}">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ user.email }}" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" name="password" id="password" placeholder="New Password (optional)">
+    <br>
+    <button type="submit">Сохранить изменения</button>
+</form>
+<a href="/users">Вернуться к пользователям</a>
+{% endblock %}
