@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Posts</h1>
+<form method="post" action="/posts">
+    <label for="title">Заголовок:</label>
+    <input type="text" name="title" id="title" placeholder="Post Title" required>
+    <br>
+    <label for="content">Содержание:</label>
+    <textarea name="content" id="content" placeholder="Post Content" required></textarea>
+    <br>
+    <label for="user_id">ID пользователя:</label>
+    <input type="number" name="user_id" id="user_id" placeholder="User ID" required>
+    <br>
+    <button type="submit">Создать пост</button>
+</form>
+<ul>
+    {% for post in posts %}
+    <li>
+        <strong>{{ post.title }}</strong> by {{ post.owner.username if post.owner else "Unknown" }} <br>
+        {{ post.content }} <br>
+        <a href="/posts/edit/{{ post.id }}">Редактировать</a>
+        <form method="post" action="/posts/delete/{{ post.id }}" style="display:inline;">
+            <button type="submit">Удалить</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/users">Вернуться к пользователям</a>
+{% endblock %}
